@@ -1,111 +1,144 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Mi Tienda – Pedido rápido</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin:0;
-      font-family: 'Arial', sans-serif;
-      background: #f4f6f8;
-    }
-    .navbar {
-      background: #25D366;
-      padding: 15px 20px;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .navbar h1 { margin: 0; font-size: 22px; }
-    .products { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; gap: 20px; }
-    .product-card { background: white; width: 220px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,.1); text-align: center; padding: 15px; transition: transform 0.2s; }
-    .product-card:hover { transform: translateY(-5px); }
-    .product-card img { width: 100%; border-radius: 10px; }
-    .product-card h3 { margin: 10px 0 5px; font-size: 18px; }
-    .product-card p { margin: 5px 0; font-size: 16px; font-weight: bold; }
-    .buy-btn { background: #25D366; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px; transition: background 0.2s; }
-    .buy-btn:hover { background: #1ebe5b; }
-    .modal { display: none; position: fixed; z-index: 1000; left: 0; top:0; width: 100%; height:100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
-    .modal-content { background: white; padding: 20px; border-radius: 10px; max-width: 350px; width: 90%; position: relative; }
-    .close-btn { position: absolute; right: 10px; top: 10px; font-size: 20px; cursor: pointer; color: #555; }
-    input, select, button.submit-btn { width: 100%; padding: 10px; margin-top: 10px; }
-    button.submit-btn { background: #25D366; color: white; border: none; font-size: 16px; cursor: pointer; border-radius: 5px; }
-    button.submit-btn:hover { background: #1ebe5b; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Viral Z | Ropa de todos los estilos</title>
+  <meta name="description" content="Viral Z – Ropa urbana, casual, deportiva y en tendencia. Compra fácil por WhatsApp. Envíos a todo Perú.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
-<body>
-<div class="navbar"><h1>Mi Tienda</h1></div>
-<div class="products">
-  <div class="product-card">
-    <img src="https://via.placeholder.com/220x220.png?text=Camiseta+Barcelona" alt="Camiseta Barcelona">
-    <h3>Camiseta Barcelona</h3>
-    <p>S/59</p>
-    <button class="buy-btn" onclick="openModal('Camiseta Barcelona', 'S/59')">Comprar</button>
-  </div>
-  <div class="product-card">
-    <img src="https://via.placeholder.com/220x220.png?text=Camiseta+Real+Madrid" alt="Camiseta Real Madrid">
-    <h3>Camiseta Real Madrid</h3>
-    <p>S/59</p>
-    <button class="buy-btn" onclick="openModal('Camiseta Real Madrid', 'S/59')">Comprar</button>
-  </div>
-</div>
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <h2 id="modal-producto">Producto</h2>
-    <p id="modal-precio">Precio</p>
-    <form onsubmit="enviarWhatsApp(); return false;">
-      <input type="hidden" id="producto">
-      <input type="hidden" id="precio">
-      <label>Talla</label>
-      <select id="talla" required>
-        <option value="">Seleccionar</option>
-        <option>S</option>
-        <option>M</option>
-        <option>L</option>
-        <option>XL</option>
-      </select>
-      <label>Nombre</label>
-      <input type="text" id="nombre" required>
-      <label>Distrito</label>
-      <input type="text" id="distrito" required>
-      <label>Método de pago</label>
-      <select id="pago" required>
-        <option value="">Seleccionar</option>
-        <option>Yape</option>
-        <option>Plin</option>
-      </select>
-      <button type="submit" class="submit-btn">Enviar pedido por WhatsApp</button>
-    </form>
-  </div>
-</div>
-<script>
-const whatsappNumber = "51923483741";
-function openModal(producto, precio){
-  document.getElementById('modal').style.display = 'flex';
-  document.getElementById('modal-producto').innerText = producto;
-  document.getElementById('modal-precio').innerText = precio;
-  document.getElementById('producto').value = producto;
-  document.getElementById('precio').value = precio;
-}
-function closeModal(){
-  document.getElementById('modal').style.display = 'none';
-}
-function enviarWhatsApp(){
-  const producto = document.getElementById("producto").value;
-  const precio = document.getElementById("precio").value;
-  const talla = document.getElementById("talla").value;
-  const nombre = document.getElementById("nombre").value;
-  const distrito = document.getElementById("distrito").value;
-  const pago = document.getElementById("pago").value;
-  const mensaje = `Hola, quiero comprar:%0AProducto: ${producto}%0APrecio: ${precio}%0ATalla: ${talla}%0ANombre: ${nombre}%0ADistrito: ${distrito}%0APago: ${pago}`;
-  window.open(`https://wa.me/${whatsappNumber}?text=${mensaje}`, '_blank');
-  closeModal();
-}
-window.onclick = function(event){ if(event.target == document.getElementById('modal')){ closeModal(); } }
-</script>
+<body class="light">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">Viral<span>Z</span></div>
+
+      <nav class="nav">
+        <a href="#categorias">Categorías</a>
+        <a href="#destacados">Destacados</a>
+        <a href="#nuevos">Nuevos</a>
+        <a href="#como-comprar">Cómo comprar</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="theme-toggle">🌙</button>
+        <a href="https://wa.me/51999999999" class="btn-whatsapp">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <h1>Ropa viral de todos los estilos</h1>
+      <p>Street, urbano, casual y tendencia. Compra fácil y rápido.</p>
+      <a href="#destacados" class="btn-primary">Comprar ahora</a>
+    </div>
+  </section>
+
+  <!-- CATEGORÍAS -->
+  <section id="categorias" class="section">
+    <div class="container">
+      <h2>Categorías</h2>
+      <div class="categories-grid">
+        <div class="category-card">Streetwear</div>
+        <div class="category-card">Urbano</div>
+        <div class="category-card">Casual</div>
+        <div class="category-card">Oversize</div>
+        <div class="category-card">Deportivo</div>
+        <div class="category-card">Accesorios</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTACADOS -->
+  <section id="destacados" class="section alt">
+    <div class="container">
+      <h2>Lo más pedido</h2>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://via.placeholder.com/300x380" alt="Producto">
+          <h3>Polo Oversize</h3>
+          <p class="price">S/ 49.90</p>
+          <button class="btn-buy" onclick="buyWhatsApp('Polo Oversize')">Comprar por WhatsApp</button>
+        </div>
+
+        <div class="product-card">
+          <img src="https://via.placeholder.com/300x380" alt="Producto">
+          <h3>Hoodie Urbano</h3>
+          <p class="price">S/ 89.90</p>
+          <button class="btn-buy" onclick="buyWhatsApp('Hoodie Urbano')">Comprar por WhatsApp</button>
+        </div>
+
+        <div class="product-card">
+          <img src="https://via.placeholder.com/300x380" alt="Producto">
+          <h3>Conjunto Deportivo</h3>
+          <p class="price">S/ 109.90</p>
+          <button class="btn-buy" onclick="buyWhatsApp('Conjunto Deportivo')">Comprar por WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <section class="banner">
+    <div class="container">
+      <h2>Stock limitado · Tendencia real</h2>
+      <p>No te quedes sin el tuyo</p>
+    </div>
+  </section>
+
+  <!-- NUEVOS -->
+  <section id="nuevos" class="section">
+    <div class="container">
+      <h2>Nuevos ingresos</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://via.placeholder.com/300x380" alt="Producto">
+          <h3>Jogger Premium</h3>
+          <p class="price">S/ 79.90</p>
+          <button class="btn-buy" onclick="buyWhatsApp('Jogger Premium')">Comprar por WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO COMPRAR -->
+  <section id="como-comprar" class="section alt">
+    <div class="container">
+      <h2>Cómo comprar</h2>
+      <div class="steps">
+        <div class="step">1. Elige tu producto</div>
+        <div class="step">2. Escríbenos por WhatsApp</div>
+        <div class="step">3. Recíbelo en tu casa</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div>
+        <strong>Viral Z</strong>
+        <p>Ropa de todos los estilos</p>
+      </div>
+      <div>
+        <p>Pagos: Yape · Plin · Transferencia</p>
+        <p>Envíos a todo Perú</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/51923483741" class="whatsapp-float">💬</a>
+
+  <script src="script.js"></script>
 </body>
 </html>
 

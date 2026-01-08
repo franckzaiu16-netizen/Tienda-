@@ -1,0 +1,55 @@
+/* =========================
+   VARIABLES Y BASE
+========================= */
+:root{
+  --accent:#00ff85;
+  --dark-bg:#0b0d10;
+  --dark-card:#141821;
+  --light-bg:#f4f6f9;
+  --light-card:#ffffff;
+  --text-dark:#eaeaf0;
+  --text-light:#121318;
+  --radius:18px;
+  --shadow:0 20px 40px rgba(0,0,0,.18);
+  --shadow-soft:0 10px 25px rgba(0,0,0,.12);
+  --transition:.35s ease;
+  --container:1200px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Inter',sans-serif;
+  transition:background var(--transition),color var(--transition);
+}
+
+/* =========================
+   MODO CLARO / OSCURO
+========================= */
+body.light{
+  background:
+    radial-gradient(1200px 500px at -10% -10%, #eafff4 0%, transparent 60%),
+    radial-gradient(800px 400px at 110% 10%, #eef2ff 0%, transparent 55%),
+    var(--light-bg);
+  color:var(--text-light);
+}
+body.dark{
+  background:
+    radial-gradient(1000px 500px at -10% -10%, #102018 0%, transparent 55%),
+    radial-gradient(900px 400px at 110% 10%, #0b1220 0%, transparent 60%),
+    var(--dark-bg);
+  color:var(--text-dark);
+}
+
+/* =========================
+   UTILIDADES
+========================= */
+.container{max-width:var(--container);margin:auto;padding:0 20px}
+.section{padding:90px 0}
+.section.alt{
+  background:linear-gradient(180deg,rgba(0,0,0,.03),transparent);
+}
+body.dark .section.alt{
+  background:linear-gradient(180deg,rgba(255,255,255,.03),transparent);
+}
+h1{font-size:clamp(2
+
