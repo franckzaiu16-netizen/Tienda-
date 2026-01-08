@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tienda – Pedido rápido</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    .card {
+      max-width: 400px;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,.1);
+    }
+    h2 { text-align: center; }
+    select, input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    button {
+      background: #25D366;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Camiseta de Fútbol</h2>
+  <p><b>Precio:</b> S/59</p>
+
+  <form onsubmit="enviarWhatsApp(); return false;">
+    <input type="hidden" id="producto" value="Camiseta de fútbol">
+
+    <label>Talla</label>
+    <select id="talla" required>
+      <option value="">Seleccionar</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+    </select>
+
+    <label>Nombre</label>
+    <input type="text" id="nombre" required>
+
+    <label>Distrito</label>
+    <input type="text" id="distrito" required>
+
+    <label>Método de pago</label>
+    <select id="pago" required>
+      <option value="">Seleccionar</option>
+      <option>Yape</option>
+      <option>Plin</option>
+    </select>
+
+    <button type="submit">Comprar por WhatsApp</button>
+  </form>
+</div>
+
+<script>
+function enviarWhatsApp() {
+  const producto = document.getElementById("producto").value;
+  const talla = document.getElementById("talla").value;
+  const nombre = document.getElementById("nombre").value;
+  const distrito = document.getElementById("distrito").value;
+  const pago = document.getElementById("pago").value;
+
+  const mensaje = `Hola, quiero comprar:%0A
+Producto: ${producto}%0A
+Talla: ${talla}%0A
+Nombre: ${nombre}%0A
+Distrito: ${distrito}%0A
+Pago: ${pago}`;
+
+  window.open(`https://wa.me/51923483741?text=${mensaje}`, '_blank');
+}
+</script>
+
+</body>
+</html>
